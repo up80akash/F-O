@@ -52,22 +52,30 @@ For a Git-connected Pages project, use these settings:
 Root directory:        frontend
 Build command:         npm ci && npm run build
 Build output directory: out
-Deploy command:        npx wrangler pages deploy out --project-name fo-trading-platform
+Deploy command:        leave blank
 ```
 
-Do not use `npx wrangler deploy`. That is the Workers deployment command and
-does not discover this static Pages output. If the Pages project runs commands
-from the repository root instead, use:
+Cloudflare Pages automatically publishes the output directory after the build.
+Do not use `npx wrangler deploy` or a custom `wrangler pages deploy` command for
+a Git-connected Pages project. Those commands call the Cloudflare API with the
+build token and can fail when the token does not have Pages permissions.
+
+If the Pages project runs the build from the repository root instead, use:
 
 ```text
 Build command:         cd frontend && npm ci && npm run build
 Build output directory: frontend/out
-Deploy command:        npx wrangler pages deploy frontend/out --project-name fo-trading-platform
+Deploy command:         leave blank
 ```
 
 The repository includes `wrangler.toml` with the Pages output directory. The
 Cloudflare dashboard settings still take precedence for a Git-connected Pages
 build, so verify the root directory and output directory there.
+
+If a separate Workers Builds workflow requires a deploy command, create an
+account API token with `Account -> Cloudflare Pages -> Edit` for account
+`f207b777c7bc6a3a41ddd0a5efb384d7`, store it as `CLOUDFLARE_API_TOKEN`, and use
+`npx wrangler pages deploy frontend/out --project-name fo-trading-platform`.
 
 The backend still needs to run on a VPS or container host. Set
 `NEXT_PUBLIC_API_URL` to that backend URL before building the frontend if the
