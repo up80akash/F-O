@@ -23,6 +23,14 @@ Services:
 - API documentation: http://localhost:8000/docs
 - Grafana: http://localhost:3001
 
+The frontend can also be deployed without a custom domain to Cloudflare Pages:
+
+```bash
+cd frontend && npm ci && npm run build
+npx wrangler login
+npx wrangler pages deploy out --project-name fo-trading-platform --branch main
+```
+
 Verify the default safety posture:
 
 ```bash

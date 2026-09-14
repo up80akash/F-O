@@ -24,3 +24,26 @@ curl -fsS https://api.example.com/api/trading/status
 
 The trading status response must report `mode` as `PAPER` and
 `execution_allowed` as `false` before the deployment is considered ready.
+
+## Frontend without a custom domain
+
+The dashboard is configured as a static export for Cloudflare Pages. It can be
+published with Cloudflare's default `pages.dev` hostname:
+
+```bash
+cd frontend
+npm ci
+npm run build
+npx wrangler login
+npx wrangler pages deploy out --project-name fo-trading-platform --branch main
+```
+
+The deployment URL will be similar to:
+
+```text
+https://fo-trading-platform.pages.dev
+```
+
+The backend still needs to run on a VPS or container host. Set
+`NEXT_PUBLIC_API_URL` to that backend URL before building the frontend if the
+dashboard makes API requests.
