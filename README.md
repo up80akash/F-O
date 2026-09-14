@@ -1,2 +1,34 @@
-# F-O
-F&amp;O
+# F&O Trading Platform
+
+Safety-first Indian F&O research and paper-trading platform.
+
+The execution flow is deliberately constrained:
+
+`DATA -> ANALYSIS -> STRATEGY -> AI INTERPRETATION -> RISK VALIDATION -> PAPER TRADE -> PERFORMANCE REVIEW`
+
+Paper trading is the default. Live execution requires both `TRADING_MODE=LIVE`
+and `LIVE_TRADING_ENABLED=true`, and remains disabled until explicitly configured.
+
+## Quick start
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+Services:
+
+- Frontend: http://localhost:3000
+- API: http://localhost:8000
+- API documentation: http://localhost:8000/docs
+- Grafana: http://localhost:3001
+
+Verify the default safety posture:
+
+```bash
+curl http://localhost:8000/api/trading/status
+```
+
+See [docs/setup.md](docs/setup.md), [docs/architecture.md](docs/architecture.md),
+and [docs/cloudflare.md](docs/cloudflare.md) for local operation, system boundaries,
+and deployment guidance.
