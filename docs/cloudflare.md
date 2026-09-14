@@ -46,12 +46,13 @@ https://fo-trading-platform.pages.dev
 
 ### Cloudflare Pages Git settings
 
-For a Git-connected Pages project, use these settings:
+Use this configuration for the current monorepo. Leave the root directory
+empty so the command starts at the repository root:
 
 ```text
-Root directory:        frontend
-Build command:         npm ci && npm run build
-Build output directory: out
+Root directory:         /
+Build command:          cd frontend && npm ci && npm run build
+Build output directory: frontend/out
 Deploy command:        leave blank
 ```
 
@@ -60,11 +61,16 @@ Do not use `npx wrangler deploy` or a custom `wrangler pages deploy` command for
 a Git-connected Pages project. Those commands call the Cloudflare API with the
 build token and can fail when the token does not have Pages permissions.
 
-If the Pages project runs the build from the repository root instead, use:
+The log error `npm ci can only install with an existing package-lock.json`
+means Cloudflare ran `npm ci` from the repository root. The lockfile is located
+at `frontend/package-lock.json`, so the build command must change to the command
+above, or the Pages root directory must be set to `frontend` with this alternate
+configuration:
 
 ```text
-Build command:         cd frontend && npm ci && npm run build
-Build output directory: frontend/out
+Root directory:         frontend
+Build command:          npm ci && npm run build
+Build output directory: out
 Deploy command:         leave blank
 ```
 
