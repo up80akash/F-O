@@ -97,8 +97,8 @@ The current backend exposes:
 - `GET /`
 - `GET /api/market/health`
 - `GET /api/market/instruments`
+- `GET /api/broker/status`
 - `GET /api/trading/status`
 
-The Upstox adapter is intentionally a stub until official credentials and a tested
-broker integration are supplied. Paper trading remains the default and AI has no
-execution authority.
+The manual REST broker adapter is configurable through server-side `BROKER_API_*`
+variables. Paper trading remains the default and AI has no execution authority.
