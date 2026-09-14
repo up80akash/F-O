@@ -1,3 +1,4 @@
 # Cloudflare Pages configuration.
 # The frontend is built by the Pages project and uploaded from frontend/out.
+name = "fo-trading-platform"
 pages_build_output_dir = "frontend/out"
