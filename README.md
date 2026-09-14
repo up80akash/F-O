@@ -31,6 +31,10 @@ npx wrangler login
 npx wrangler pages deploy out --project-name fo-trading-platform --branch main
 ```
 
+For Git-connected Pages builds, set the root directory to `frontend`, build
+command to `npm ci && npm run build`, output directory to `out`, and do not use
+`npx wrangler deploy` because that command targets Workers rather than Pages.
+
 Verify the default safety posture:
 
 ```bash

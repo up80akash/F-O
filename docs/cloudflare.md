@@ -44,6 +44,31 @@ The deployment URL will be similar to:
 https://fo-trading-platform.pages.dev
 ```
 
+### Cloudflare Pages Git settings
+
+For a Git-connected Pages project, use these settings:
+
+```text
+Root directory:        frontend
+Build command:         npm ci && npm run build
+Build output directory: out
+Deploy command:        npx wrangler pages deploy out --project-name fo-trading-platform
+```
+
+Do not use `npx wrangler deploy`. That is the Workers deployment command and
+does not discover this static Pages output. If the Pages project runs commands
+from the repository root instead, use:
+
+```text
+Build command:         cd frontend && npm ci && npm run build
+Build output directory: frontend/out
+Deploy command:        npx wrangler pages deploy frontend/out --project-name fo-trading-platform
+```
+
+The repository includes `wrangler.toml` with the Pages output directory. The
+Cloudflare dashboard settings still take precedence for a Git-connected Pages
+build, so verify the root directory and output directory there.
+
 The backend still needs to run on a VPS or container host. Set
 `NEXT_PUBLIC_API_URL` to that backend URL before building the frontend if the
 dashboard makes API requests.
