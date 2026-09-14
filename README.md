@@ -30,5 +30,6 @@ curl http://localhost:8000/api/trading/status
 ```
 
 See [docs/setup.md](docs/setup.md), [docs/architecture.md](docs/architecture.md),
-and [docs/cloudflare.md](docs/cloudflare.md) for local operation, system boundaries,
-and deployment guidance.
+[docs/cloudflare.md](docs/cloudflare.md), and
+[docs/open-source-self-hosting.md](docs/open-source-self-hosting.md) for local
+operation, system boundaries, and deployment guidance.
